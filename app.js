@@ -56,7 +56,13 @@ function mainMenu() {
                         })
                     break;
                 case "Finish team":
-                    // render();
+                    // render(team);
+                    if (team.length > 0){
+                        render(team);
+                    }else{
+                        console.log("There's no team members!")
+                        mainMenu();
+                    }
                     break;
                 default:
                     break;
