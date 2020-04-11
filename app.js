@@ -59,8 +59,10 @@ function mainMenu() {
                     // render(team);
                     if (team.length > 0){
                         render(team);
+                        console.log(team)
+                        console.log("All done!");
                     }else{
-                        console.log("There's no team members!")
+                        console.log("There's no team members!");
                         mainMenu();
                     }
                     break;
@@ -97,10 +99,8 @@ function addEngineer() {
             },
         ])
         .then(function (response) {
-            console.log(response)
             let newEngineer = new Engineer(response.name, response.email, response.id, response.github);
             team.push(newEngineer)
-            console.log(team)
             mainMenu();
             // collect people inside team array
             // call main menu function in all .thens to go back to main menu
@@ -136,11 +136,8 @@ function addIntern() {
             },
         ])
         .then(function (response) {
-            console.log(response)
             let newIntern = new Intern(response.name, response.email, response.id, response.school);
             team.push(newIntern)
-            console.log(team)
-
             mainMenu();
         })
 }
@@ -170,10 +167,8 @@ function addManager() {
             },
         ])
         .then(function (response) {
-            console.log(response)
             let newManager = new Manager(response.name, response.email, response.id, response.officeNumber);
             team.push(newManager)
-            console.log(team)
             mainMenu();
         })
 }
