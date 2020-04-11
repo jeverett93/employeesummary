@@ -10,7 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const team = [];
+let team = [];
 
 
 // Write code to use inquirer to gather information about the development team members,
@@ -98,7 +98,8 @@ function addEngineer() {
         ])
         .then(function (response) {
             console.log(response)
-            team.push(response)
+            let newEngineer = new Engineer(response.name, response.email, response.id, response.github);
+            team.push(newEngineer)
             console.log(team)
             mainMenu();
             // collect people inside team array
@@ -136,7 +137,8 @@ function addIntern() {
         ])
         .then(function (response) {
             console.log(response)
-            team.push(response)
+            let newIntern = new Intern(response.name, response.email, response.id, response.school);
+            team.push(newIntern)
             console.log(team)
 
             mainMenu();
@@ -169,7 +171,8 @@ function addManager() {
         ])
         .then(function (response) {
             console.log(response)
-            team.push(response)
+            let newManager = new Manager(response.name, response.email, response.id, response.officeNumber);
+            team.push(newManager)
             console.log(team)
             mainMenu();
         })
