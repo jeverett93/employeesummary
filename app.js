@@ -18,24 +18,45 @@ const team = [];
 function mainMenu() {
     inquirer
         .prompt([
+            // add switch case for build team and team built
             {
                 type: "list",
-                message: "What role would you like to add?",
-                choices: ["Engineer", "Intern", "Manager"],
-                name: "role"
+                message: "What role would you like to do?",
+                choices: ["Build a team", "Finish team"],
+                name: "teamOption"
             }
         ])
         .then(function (response) {
-            const role = response.role;
-            switch (role) {
-                case "Engineer":
-                    addEngineer();
+            const teamOption = response.teamOption;
+            switch (teamOption) {
+                case "Build a team":
+                    inquirer.prompt([
+                        {
+                            type: "list",
+                            message: "What role would you like to add?",
+                            choices: ["Engineer", "Intern", "Manager"],
+                            name: "role"
+                        }
+                    ])
+                        .then(function (response) {
+                            const role = response.role;
+                            switch (role) {
+                                case "Engineer":
+                                    addEngineer();
+                                    break;
+                                case "Intern":
+                                    addIntern();
+                                    break;
+                                case "Manager":
+                                    addManager();
+                                    break;
+                                default:
+                                    break;
+                            }
+                        })
                     break;
-                case "Intern":
-                    addIntern();
-                    break;
-                case "Manager":
-                    addManager();
+                case "Finish team":
+                    // render();
                     break;
                 default:
                     break;
@@ -69,10 +90,11 @@ function addEngineer() {
                 name: "github"
             },
         ])
-        .then(function(response){
+        .then(function (response) {
             console.log(response)
             team.push(response)
-            // mainMenu();
+            console.log(team)
+            mainMenu();
             // collect people inside team array
             // call main menu function in all .thens to go back to main menu
             // .push response objects into global array
@@ -106,12 +128,12 @@ function addIntern() {
                 name: "school"
             },
         ])
-        .then(function(response){
+        .then(function (response) {
             console.log(response)
             team.push(response)
             console.log(team)
 
-            // mainMenu();
+            mainMenu();
         })
 }
 
@@ -139,10 +161,11 @@ function addManager() {
                 name: "officeNumber"
             },
         ])
-        .then(function(response){
+        .then(function (response) {
             console.log(response)
             team.push(response)
-            // mainMenu();
+            console.log(team)
+            mainMenu();
         })
 }
 // After the user has input all employees desired, call the `render` function (required
