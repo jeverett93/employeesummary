@@ -10,6 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const team = [];
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -69,6 +71,14 @@ function addEngineer() {
         ])
         .then(function(response){
             console.log(response)
+            team.push(response)
+            // mainMenu();
+            // collect people inside team array
+            // call main menu function in all .thens to go back to main menu
+            // .push response objects into global array
+            // need main menu option of build team to call so function is rendered
+            // render function will use global array to render team
+            // add another case for build team that calls render function
         })
 }
 
@@ -98,6 +108,10 @@ function addIntern() {
         ])
         .then(function(response){
             console.log(response)
+            team.push(response)
+            console.log(team)
+
+            // mainMenu();
         })
 }
 
@@ -127,6 +141,8 @@ function addManager() {
         ])
         .then(function(response){
             console.log(response)
+            team.push(response)
+            // mainMenu();
         })
 }
 // After the user has input all employees desired, call the `render` function (required
