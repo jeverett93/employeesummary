@@ -181,6 +181,12 @@ function addManager() {
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
+fs.writeFileSync(outputPath, render(team), function (err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Success!");
+    });
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
