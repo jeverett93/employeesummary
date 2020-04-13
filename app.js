@@ -15,7 +15,7 @@ let team = [];
 
 
 // Main menu function that initializes application that lets user develop team
-function mainMenu() {
+const mainMenu= () => {
     inquirer
         .prompt([
             // Switch case that allows user to keep building team and or complete their team
@@ -26,7 +26,7 @@ function mainMenu() {
                 name: "teamOption"
             }
         ])
-        .then(function (response) {
+        .then(response => {
             const teamOption = response.teamOption;
             switch (teamOption) {
                 case "Build a team":
@@ -39,7 +39,7 @@ function mainMenu() {
                         }
                     ])
                     // different functions called for each case of employee type
-                        .then(function (response) {
+                        .then(response => {
                             const role = response.role;
                             switch (role) {
                                 case "Engineer":
@@ -77,7 +77,7 @@ function mainMenu() {
 mainMenu();
 
 // questions for engineer employee type
-function addEngineer() {
+const addEngineer= () => {
     inquirer
         .prompt([
             {
@@ -101,7 +101,7 @@ function addEngineer() {
                 name: "github"
             },
         ])
-        .then(function (response) {
+        .then(response => {
             // creating new Engineer class dynamically and pushing into team array
             let newEngineer = new Engineer(response.name, response.id, response.email, response.github);
             team.push(newEngineer)
@@ -110,7 +110,7 @@ function addEngineer() {
 }
 
 // questions for intern employee type
-function addIntern() {
+addIntern= () => {
     inquirer
         .prompt([
             {
@@ -134,7 +134,7 @@ function addIntern() {
                 name: "school"
             },
         ])
-        .then(function (response) {
+        .then(response => {
             // creating new Intern class dynamically and pushing into team array
             let newIntern = new Intern(response.name, response.id, response.email, response.school);
             team.push(newIntern)
@@ -143,7 +143,7 @@ function addIntern() {
 }
 
 // questions for manager employee type
-function addManager() {
+const addManager= () => {
     inquirer
         .prompt([
             {
@@ -167,7 +167,7 @@ function addManager() {
                 name: "officeNumber"
             },
         ])
-        .then(function (response) {
+        .then(response => {
             // creating new Manager class dynamically and pushing into team array
             let newManager = new Manager(response.name, response.id, response.email, response.officeNumber);
             team.push(newManager)
@@ -175,8 +175,8 @@ function addManager() {
         })
 }
 // Generating HTML file with user input
-function writeHTML(HTML) {
-    fs.writeFileSync(outputPath, HTML, function (err) {
+const writeHTML= HTML => {
+    fs.writeFileSync(outputPath, HTML, err => {
         if (err) {
             return console.log(err);
         }
