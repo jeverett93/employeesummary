@@ -1,3 +1,4 @@
+// Global variables
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -13,12 +14,11 @@ const render = require("./lib/htmlRenderer");
 let team = [];
 
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+// Main menu function that initializes application that lets user develop team
 function mainMenu() {
     inquirer
         .prompt([
-            // add switch case for build team and team built
+            // Switch case that allows user to keep building team and or complete their team
             {
                 type: "list",
                 message: "What role would you like to do?",
@@ -38,6 +38,7 @@ function mainMenu() {
                             name: "role"
                         }
                     ])
+                    // different functions called for each case of employee type
                         .then(function (response) {
                             const role = response.role;
                             switch (role) {
@@ -55,12 +56,13 @@ function mainMenu() {
                             }
                         })
                     break;
+                    // running HTML function once team is complete/built
                 case "Finish team":
-                    if (team.length > 0){
+                    if (team.length > 0) {
                         writeHTML(render(team));
                         console.log(team)
                         console.log("All done!");
-                    }else{
+                    } else {
                         console.log("There's no team members!");
                         mainMenu();
                     }
@@ -71,8 +73,10 @@ function mainMenu() {
         })
 }
 
+// calling main menu function to generate initial questions
 mainMenu();
 
+// questions for engineer employee type
 function addEngineer() {
     inquirer
         .prompt([
@@ -82,14 +86,14 @@ function addEngineer() {
                 name: "name"
             },
             {
-                type: "Input",
-                message: "What is their email address?",
-                name: "email"
-            },
-            {
                 type: "input",
                 message: "What is their employee id?",
                 name: "id"
+            },
+            {
+                type: "Input",
+                message: "What is their email address?",
+                name: "email"
             },
             {
                 type: "input",
@@ -98,12 +102,14 @@ function addEngineer() {
             },
         ])
         .then(function (response) {
-            let newEngineer = new Engineer(response.name, response.email, response.id, response.github);
+            // creating new Engineer class dynamically and pushing into team array
+            let newEngineer = new Engineer(response.name, response.id, response.email, response.github);
             team.push(newEngineer)
             mainMenu();
         })
 }
 
+// questions for intern employee type
 function addIntern() {
     inquirer
         .prompt([
@@ -113,14 +119,14 @@ function addIntern() {
                 name: "name"
             },
             {
-                type: "Input",
-                message: "What is their email address?",
-                name: "email"
-            },
-            {
                 type: "input",
                 message: "What is their employee id?",
                 name: "id"
+            },
+            {
+                type: "Input",
+                message: "What is their email address?",
+                name: "email"
             },
             {
                 type: "input",
@@ -129,12 +135,14 @@ function addIntern() {
             },
         ])
         .then(function (response) {
-            let newIntern = new Intern(response.name, response.email, response.id, response.school);
+            // creating new Intern class dynamically and pushing into team array
+            let newIntern = new Intern(response.name, response.id, response.email, response.school);
             team.push(newIntern)
             mainMenu();
         })
 }
 
+// questions for manager employee type
 function addManager() {
     inquirer
         .prompt([
@@ -144,14 +152,14 @@ function addManager() {
                 name: "name"
             },
             {
-                type: "Input",
-                message: "What is their email address?",
-                name: "email"
-            },
-            {
                 type: "input",
                 message: "What is their employee id?",
                 name: "id"
+            },
+            {
+                type: "Input",
+                message: "What is their email address?",
+                name: "email"
             },
             {
                 type: "input",
@@ -160,22 +168,15 @@ function addManager() {
             },
         ])
         .then(function (response) {
-            let newManager = new Manager(response.name, response.email, response.id, response.officeNumber);
+            // creating new Manager class dynamically and pushing into team array
+            let newManager = new Manager(response.name, response.id, response.email, response.officeNumber);
             team.push(newManager)
             mainMenu();
         })
 }
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-function writeHTML(HTML){
-fs.writeFileSync(outputPath, HTML, function (err) {
+// Generating HTML file with user input
+function writeHTML(HTML) {
+    fs.writeFileSync(outputPath, HTML, function (err) {
         if (err) {
             return console.log(err);
         }
@@ -183,12 +184,3 @@ fs.writeFileSync(outputPath, HTML, function (err) {
     });
 };
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an 
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work!```
