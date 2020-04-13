@@ -1,4 +1,4 @@
-// Global variables
+// Global variables 
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -11,8 +11,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+// array that team members are pushed into
 let team = [];
-
 
 // Main menu function that initializes application that lets user develop team
 const mainMenu= () => {
@@ -174,6 +174,7 @@ const addManager= () => {
             mainMenu();
         })
 }
+
 // Generating HTML file with user input
 const writeHTML= HTML => {
     fs.writeFileSync(outputPath, HTML, err => {
