@@ -56,9 +56,8 @@ function mainMenu() {
                         })
                     break;
                 case "Finish team":
-                    // render(team);
                     if (team.length > 0){
-                        render(team);
+                        writeHTML(render(team));
                         console.log(team)
                         console.log("All done!");
                     }else{
@@ -102,12 +101,6 @@ function addEngineer() {
             let newEngineer = new Engineer(response.name, response.email, response.id, response.github);
             team.push(newEngineer)
             mainMenu();
-            // collect people inside team array
-            // call main menu function in all .thens to go back to main menu
-            // .push response objects into global array
-            // need main menu option of build team to call so function is rendered
-            // render function will use global array to render team
-            // add another case for build team that calls render function
         })
 }
 
@@ -181,12 +174,14 @@ function addManager() {
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
-fs.writeFileSync(outputPath, render(team), function (err) {
+function writeHTML(HTML){
+fs.writeFileSync(outputPath, HTML, function (err) {
         if (err) {
             return console.log(err);
         }
         console.log("Success!");
     });
+};
 
 // HINT: each employee type (manager, engineer, or intern) has slightly different
 // information; write your code to ask different questions via inquirer depending on
