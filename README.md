@@ -21,7 +21,7 @@ This is a Node CLI that takes in information about employees and generates an HT
 ## Installation
 * Step 1. Git clone this link to your terminal: https://github.com/jeverett93/employeesummary.git
 * Step 2. Navigate into the cloned repository.
-* Step 3. Install the axios, dotenv, and inquirer dependencies into your command line using the following commands respectively:
+* Step 3. Install the jest and inquirer dependencies into your command line using the following commands respectively:
 
     ```
     npm install jest
@@ -35,7 +35,7 @@ This is a Node CLI that takes in information about employees and generates an HT
     ```
     
 ## <h2 id="tech">Technology Stack</h2>
-Node.Js, JavaScript, GIT, GitHub, HTML, CSS, Command- Line
+Node.Js, JavaScript, GIT, GitHub, HTML, CSS, Bootstrap, Command- Line
 
 ## <h2 id="usage">Usage</h2>
 
@@ -55,7 +55,7 @@ so that I have quick access to emails and GitHub profiles
 * #### LinkedIn: [https://www.linkedin.com/in/joshua-everett-087a4649/](https://www.linkedin.com/in/joshua-everett-087a4649/)
 
 ## <h2 id="tests">Tests</h2>
-To run tests run:
+To run tests:
 
 ```
 npm run test
